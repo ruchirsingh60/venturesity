@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>validation</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body style="background:#ddd";>
+<div class="container">
+<h1>Coding Round</h1>
+<h3>You will be given a problem which is to be coded in the editor below.</h3>
+<br/>
+<div class="form-group">
+<form id="coding-round" action="finish.html">
+  <label for="comment">Code Compiler:</label>
+  <textarea class="form-control" rows="10" id="codeCompiler"></textarea>
+</div>
+<div>
+	<ul><span>Note :</span>
+		<li>Copy Paste action is Disabled</li>
+		<li>No scripts can be executed</li>
+		<li>If you move out of this window for more 3 times, the test will submit automatically.</li>
+	</ul>
+</div>
+<button type="submit" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Submit</button>
+</div>
+</form>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//window.open("script.html","alert.html","toolbar=no,menubar=no");
+		$(window).focus(function() {
+   		// alert("in page");
+		});
+		var mycalls = 1;
+		$(window).blur(function() {
+		if(mycalls==1){
+	    	alert("Please stay on this window to take this test. This is your first warning");
+	    	mycalls++;
+		}
+		else if(mycalls==2){
+	    	setTimeout(function () {
+	    	alert("Please close other active windows. This is your last warning");
+	    	mycalls++;},3000)
+		}
+		else if(mycalls==3){
+	    	setTimeout(function () {
+		 	document.getElementById("coding-round").submit();},5000)	
+		}
+	});
+
+
+    $('#codeCompiler').bind("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+});
+
+</script>
+<style type="text/css">
+	.container{
+		background-color: white;
+		min-height: 768px;
+	}
+
+</style>
+</body>
+</html>
