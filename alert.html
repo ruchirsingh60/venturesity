@@ -26,26 +26,40 @@
 </div>
 </form>
 <script type="text/javascript">
-	$(document).ready(function(){
-		//window.open("script.html","alert.html","toolbar=no,menubar=no");
-		$(window).focus(function() {
-   		// alert("in page");
-		});
-		var mycalls = 1;
-		$(window).blur(function() {
-		if(mycalls==1){
-	    	alert("Please stay on this window to take this test. This is your first warning");
-	    	mycalls++;
+$(document).ready(function(){
+
+	// --------New Code Added------------
+	$(document).keydown(function(event){
+	if(event.keyCode==123){
+		return false; // @prateek : for preventing f12 key press
 		}
-		else if(mycalls==2){
-	    	setTimeout(function () {
-	    	alert("Please close other active windows. This is your last warning");
-	    	mycalls++;},3000)
+	else if(event.ctrlKey && event.shiftKey && event.keyCode==73){        
+  		return false;  // @prateek : for preventing ctrl+shift+i
 		}
-		else if(mycalls==3){
-	    	setTimeout(function () {
-		 	document.getElementById("coding-round").submit();},5000)	
-		}
+	});
+	$(document).on("contextmenu",function(e){        
+			e.preventDefault(); // @prateek : to prevent right click for inspect 										element
+	});
+	// --------New Code Ended-----------
+
+	$(window).focus(function() {
+		// alert("in page");
+	});
+	var mycalls = 1;
+	$(window).blur(function() {
+	if(mycalls==1){
+    	alert("Please stay on this window to take this test. This is your first warning");
+    	mycalls++;
+	}
+	else if(mycalls==2){
+    	setTimeout(function () {
+    	alert("Please close other active windows. This is your last warning");
+    	mycalls++;},3000)
+	}
+	else if(mycalls==3){
+    	setTimeout(function () {
+	 	document.getElementById("coding-round").submit();},5000)	
+	}
 	});
 
 
