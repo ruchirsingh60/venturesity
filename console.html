@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<p id="testText"></p>
+
+
+<div class="alert alert-warning text-center" id="console-open">
+  <strong>Warning!</strong> Please close your console window before taking this test.
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+window.requestFrame = (function() {
+  return window.requestAnimationFrame || (window.webkitRequestAnimationFrame || (window.mozRequestAnimationFrame || (window.msRequestAnimationFrame || (window.oRequestAnimationFrame || function(c) {
+    window.setTimeout(c, 50);
+  }))));
+})();
+var console_status = {
+  st: false,
+  el: document.createElement("img"),
+  run: function() {
+    console_status.st = false;
+    console.log(console_status.el);
+    console.clear();
+    var console_open = 0;
+    if(console_status.st === true){
+      $('#console-open').show();
+    	console_open++;
+    }
+    else{
+      $('#console-open').hide();
+    }
+
+    window.requestFrame(console_status.run);
+  }
+};
+(console_status.el).__defineGetter__("id", function() {
+  console_status.st = true;
+});
+console_status.run();
+
+
+
+
+});
+</script>
+</body>
+</html>
